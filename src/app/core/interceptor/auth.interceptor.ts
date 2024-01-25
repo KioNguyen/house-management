@@ -38,7 +38,14 @@ export class AuthInterceptor implements HttpInterceptor {
                     : 'https://vn-fe-test-api.iwalabs.info') + req.url
               })
             ),
-            next.handle(req)
+            next.handle(
+              req.clone({
+                url:
+                  (environment.backendHost
+                    ? environment.backendHost
+                    : 'https://vn-fe-test-api.iwalabs.info') + req.url
+              })
+            )
           )
         )
       )
