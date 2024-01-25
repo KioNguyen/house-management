@@ -31,11 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 setHeaders: {
                   authentication: tk,
                   'content-type': 'application/vnd.api+json'
-                },
-                url:
-                  (environment.backendHost
-                    ? environment.backendHost
-                    : 'https://vn-fe-test-api.iwalabs.info') + req.url
+                }
               })
             ),
             next.handle(
