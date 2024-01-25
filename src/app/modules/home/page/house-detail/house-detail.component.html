@@ -1,0 +1,91 @@
+
+
+<div class="mt-5">
+  <div class="mb-5">
+    <a [routerLink]="['/home/']">House List</a> >
+    {{house?.attributes?.house_number ||
+    (f['house_number'].value ? f['house_number'].value :
+    "[House Number]")}}
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-column h-100 w-50">
+      <h1 class="mat-display-3 mb-3">{{ house?.attributes?.house_number ||
+        (f['house_number'].value ? f['house_number'].value :
+        "[House Number]")}}</h1>
+    </div>
+    <button type="submit" class="btn btn-primary"
+      form="houseForm">{{actionTitle}}</button>
+  </div>
+
+  <fieldset>
+    <form class="row g-3" (ngSubmit)="save()" [formGroup]="houseForm"
+      id="houseForm">
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="house_number" class="form-label">House Number</label>
+        <input type="text" name="house_number"
+          class="form-control" placeholder="House Number"
+          formControlName="house_number">
+        <app-control-messages
+          [control]="f['house_number']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="block_number" class="form-label">Block Number</label>
+        <input type="text" name="block_number"
+          class="form-control" placeholder="Block Number"
+          formControlName="block_number">
+        <app-control-messages
+          [control]="f['block_number']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="land_number" class="form-label">Land Number</label>
+        <input type="text" name="land_number"
+          class="form-control" placeholder="Land Number"
+          formControlName="land_number">
+        <app-control-messages
+          [control]="f['land_number']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="house_type" class="form-label">House Type</label>
+        <mat-select name="house_type"
+          formControlName="house_type" class="form-control">
+          <mat-option *ngFor="let type of typeOptions" [value]="type.value">
+            {{type.label}}
+          </mat-option>
+        </mat-select>
+        <app-control-messages
+          [control]="f['house_type']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="model" class="form-label">House Model</label>
+        <mat-select name="model"
+          formControlName="model" class="form-control">
+          <mat-option *ngFor="let type of modelOptions" [value]="type.value">
+            {{type.label}}
+          </mat-option>
+        </mat-select>
+        <app-control-messages
+          [control]="f['house_type']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" name="price"
+          class="form-control" placeholder="Price"
+          formControlName="price">
+        <app-control-messages
+          [control]="f['price']"></app-control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <label for="status" class="form-label">Status</label>
+        <mat-select name="status"
+          formControlName="status" class="form-control">
+          <mat-option *ngFor="let sts of statusOptions" [value]="sts.value">
+            {{sts.label}}
+          </mat-option>
+        </mat-select>
+        <app-control-messages
+          [control]="f['status']"></app-control-messages>
+      </div>
+    </form>
+  </fieldset>
+
+</div>

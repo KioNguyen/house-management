@@ -1,0 +1,58 @@
+<div class="d-flex flex-column my-5">
+  <div class="d-flex flex-row mb-3">
+    <div class="d-flex flex-column h-100 w-50">
+        <h1 class="mat-display-3 mb-3">{{model.attributes.media.title}}</h1>
+        <h3 class="mat-body-3">{{model.attributes.media.description}}</h3>
+    </div>
+
+    <img class="w-50" src="../../../../../assets/images/default-home.jpg">
+    
+  </div>
+
+  <div class="w-100 h-100 mat-elevation-z8">
+    <table mat-table [dataSource]="houses" class="mat-elevation-z8">
+      <ng-container matColumnDef="house_number">
+        <th mat-header-cell *matHeaderCellDef> House number </th>
+        <td mat-cell *matCellDef="let element"> {{element.house_number}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="block_number">
+        <th mat-header-cell *matHeaderCellDef> Block No </th>
+        <td mat-cell *matCellDef="let element"> {{element.block_number}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="land_number">
+        <th mat-header-cell *matHeaderCellDef> Land No </th>
+        <td mat-cell *matCellDef="let element"> {{element.land_number}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="action" >
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-icon-button color="accent" aria-label="Example icon button with a home icon" [routerLink]="['/house/', element.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="homeTableDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: homeTableDisplayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+      </mat-paginator>
+  </div>
+</div>
+
+

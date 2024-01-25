@@ -1,0 +1,65 @@
+<div id="content">
+  <div class="d-flex justify-content-between mt-4 mb-3">
+    <div class="w-100">
+      <fieldset>
+        <form class="row g-3" [formGroup]="filterForm"
+          id="filterForm">
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <mat-select name="block_number" placeholder="Block Number"
+              formControlName="block_number" class="form-control">
+              <mat-option [value]="null">All</mat-option>
+              <mat-option *ngFor="let n of blockNumbers" [value]="n.value">
+                {{n.label}}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <mat-select name="land_number" placeholder="Land Number"
+              formControlName="land_number" class="form-control">
+              <mat-option [value]="null">All</mat-option>
+              <mat-option *ngFor="let n of landNumbers" [value]="n.value">
+                {{n.label}}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <mat-select name="min_price" placeholder="Min Price"
+              formControlName="min_price" class="form-control">
+              <mat-option [value]="null">All</mat-option>
+              <mat-option *ngFor="let n of prices" [value]="n.value">
+                {{n.label}}
+              </mat-option>
+            </mat-select>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+            <mat-select name="max_price" placeholder="Max Price"
+              formControlName="max_price" class="form-control">
+              <mat-option [value]="null">All</mat-option>
+              <mat-option *ngFor="let n of prices" [value]="n.value">
+                {{n.label}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </form>
+      </fieldset>
+    </div>
+    <div>
+      <button mat-raised-button color="primary"
+        [routerLink]="['/house/create']">Create new house</button>
+    </div>
+
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let model of houseModels">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{model.attributes.model}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-house-model [model]="model"
+        [filter]="filterForm.value"></app-house-model>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
