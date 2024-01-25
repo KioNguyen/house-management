@@ -5,5 +5,6 @@ export const environment = {
   production: true,
   version: env.npm_package_version,
   serverUrl: '/api',
-  envName: 'PROD'
+  envName: 'PROD',
+  backendHost: 'https://vn-fe-test-api.iwalabs.info'
 };
