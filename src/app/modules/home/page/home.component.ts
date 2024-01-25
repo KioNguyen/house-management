@@ -8,6 +8,7 @@ import { HouseService } from '@app/core/service/house.service';
 import { BaseDataItem } from '@app/data/schema/api-response';
 import { HomeModel, HomeModelDisplayItem } from '@app/data/schema/home-model';
 import { House } from '@app/data/schema/house';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ import { House } from '@app/data/schema/house';
 })
 export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  isLogged$: Observable<boolean> = this.authService.isLogged$.pipe();
   displayedColumns: string[] = ['position', 'name', 'weight'];
   blockNumbers: { value: string; label: string }[] = [];
   landNumbers: { value: string; label: string }[] = [];
@@ -37,7 +40,6 @@ export class HomeComponent implements OnInit {
   get f() {
     return this.filterForm.controls;
   }
-
   ngOnInit(): void {
     this.authService.getUser$.subscribe(user => {
       if (user?.username) {

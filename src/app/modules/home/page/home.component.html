@@ -44,7 +44,7 @@
       </fieldset>
     </div>
     <div>
-      <button mat-raised-button color="primary"
+      <button mat-raised-button color="primary" *ngIf="isLogged$ | async"
         [routerLink]="['/house/create']">Create new house</button>
     </div>
 

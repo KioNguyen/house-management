@@ -59,26 +59,24 @@ export class AuthService {
       }
     };
 
-    return this._http
-      .post<LoginResponse>(`https://vn-fe-test-api.iwalabs.info/auth`, dPost)
-      .pipe(
-        retry(3),
-        map(res => {
-          if (res) {
-            const { token } = res.data.attributes;
-            this.token$.next(token);
-            this.user$.next({ username });
-            localStorage.setItem('token', token);
-            localStorage.setItem('username', username);
-            return { username, token };
-          }
-          return null;
-        }),
-        catchError(err => {
-          console.log('🚀 ~ AuthService ~ login ~ err:', err);
-          return of(null);
-        })
-      );
+    return this._http.post<LoginResponse>('/auth', dPost).pipe(
+      retry(3),
+      map(res => {
+        if (res) {
+          const { token } = res.data.attributes;
+          this.token$.next(token);
+          this.user$.next({ username });
+          localStorage.setItem('token', token);
+          localStorage.setItem('username', username);
+          return { username, token };
+        }
+        return null;
+      }),
+      catchError(err => {
+        console.log('🚀 ~ AuthService ~ login ~ err:', err);
+        return of(null);
+      })
+    );
   }
 
   logout(): Observable<boolean> {
