@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-        
+
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
 
       - run: npm install
 
@@ -25,19 +25,6 @@ jobs:
 
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-
-      - name:  Install package
-        run: yarn
-
-      - name:  Log source
-        run: ls
-
-      - name:  Install Angular
-        run: npm install -g @angular/cli 
-
-      - name:  Build 
-        run: yarn build
 
       - name:  Deploy with rsync
         run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/house-managerment/dist/
