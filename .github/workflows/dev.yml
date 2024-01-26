@@ -1,0 +1,28 @@
+name: deploy-2-server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name:  Install package
+        run: yarn
+
+      - name:  Build 
+        run: ng build
+
+      - name:  Restart server 
+        run: sudo systemctl restart nginx
+
+      - name:  Done  
+        run: echo "Done"
