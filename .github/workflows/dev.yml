@@ -17,17 +17,15 @@ jobs:
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
 
-      - name:  Target to House-Management folder
-        run: cd house-management
 
       - name:  Install package
         run: yarn
 
+      - name:  Install Angular
+        run: npm install -g @angular/cli 
+
       - name:  Build 
         run: ng build
 
-      - name:  Restart server 
-        run: sudo systemctl restart nginx
-
-      - name:  Done  
-        run: echo "Done"
+      - name:  Deploy with rsync
+        run: rsync -avz ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/house-managerment/dist/
