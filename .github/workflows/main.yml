@@ -23,7 +23,21 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: "yarn.log"
-    - run: npm install -g yarn
-    - run: yarn install --frozen-lockfile
-    - run: yarn build
+
+        
+    - name: Get node_modules cache
+      uses: actions/cache@v3.0.2
+      id: node_modules
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-node_modules-${{ hashFiles('**/yarn.lock') }}-${{ matrix.node-version }}
+
+    - name: Install Yarn Package Manager
+      run: npm install -g yarn
+      
+    - name: Install Dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build
+      run: yarn build
