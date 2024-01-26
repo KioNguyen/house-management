@@ -20,6 +20,9 @@ jobs:
       - name:  Install package
         run: yarn
 
+      - name:  Log source
+        run: ls
+        
       - name:  Install Angular
         run: npm install -g @angular/cli 
 
