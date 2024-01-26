@@ -16,7 +16,7 @@ import { House } from '@app/data/schema/house';
 @Component({
   selector: 'app-house-model',
   templateUrl: './house-model.component.html',
-  styleUrls: ['./house-model.component.scss']
+  styleUrls: ['house-model.component.scss']
 })
 export class HouseModelComponent implements AfterViewInit, OnInit, OnChanges {
   @Input() model: HomeModelDisplayItem;

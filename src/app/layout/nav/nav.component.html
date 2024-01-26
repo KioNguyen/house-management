@@ -3,38 +3,46 @@
     <mat-toolbar color="primary">
       <div class="container">
 
-        <mat-slide-toggle [checked]="isDarkTheme$ | async" (change)="toggleTheme($event.checked)">Change Theme
+        <mat-slide-toggle [checked]="isDarkTheme$ | async"
+          (change)="toggleTheme($event.checked)"
+          class="d-none d-lg-inline-block">Change Theme
         </mat-slide-toggle>
         <div style="float: right;">
 
-          <button type="button" mat-button color="warning" *ngIf="isLogged" (click)="logout()">
+          <button type="button" mat-button color="warning" *ngIf="isLogged"
+            (click)="logout()">
             <span *ngIf="!isLoading">Logout</span>
             <span *ngIf="isLoading">
-              <fa-icon icon="asterisk"  [spin]="true"></fa-icon>
+              <fa-icon icon="asterisk" [spin]="true"></fa-icon>
             </span>
           </button>
           <fieldset [disabled]="isLoading" *ngIf="!isLogged">
-            <form (ngSubmit)="login()" [formGroup]="loginForm" class="d-flex gap-2">
-                <div class="form-group m-0">
-                  <label class="d-block m-0">
-                    <input type="text" class="form-control" placeholder="Username" formControlName="username">
-                    <!-- <app-control-messages [control]="f['username']" style="font-size: small;"></app-control-messages> -->
-                  </label>
-                </div>
-                <div class="form-group m-0">
-                  <label class="d-block m-0">
-                    <input type="password" name="password" autocomplete="on" class="form-control" placeholder="Password" formControlName="password">
-                    <!-- <app-control-messages [control]="f['password']"></app-control-messages> -->
-                  </label>
-                </div>
-                <div class="form-group m-0">
-                  <button type="submit" mat-button color="warning" [disabled]="loginForm.invalid">
-                    <span *ngIf="!isLoading">Submit</span>
-                    <span *ngIf="isLoading">
-                      <fa-icon icon="asterisk"  [spin]="true"></fa-icon>
-                    </span>
-                  </button>
-                </div>
+            <form (ngSubmit)="login()" [formGroup]="loginForm"
+              class="d-flex gap-2">
+              <div class="form-group m-0">
+                <label class="d-block m-0">
+                  <input type="text" class="form-control" placeholder="Username"
+                    formControlName="username">
+                  <!-- <app-control-messages [control]="f['username']" style="font-size: small;"></app-control-messages> -->
+                </label>
+              </div>
+              <div class="form-group m-0">
+                <label class="d-block m-0">
+                  <input type="password" name="password" autocomplete="on"
+                    class="form-control" placeholder="Password"
+                    formControlName="password">
+                  <!-- <app-control-messages [control]="f['password']"></app-control-messages> -->
+                </label>
+              </div>
+              <div class="form-group m-0">
+                <button type="submit" mat-button color="warning"
+                  [disabled]="loginForm.invalid">
+                  <span *ngIf="!isLoading">Submit</span>
+                  <span *ngIf="isLoading">
+                    <fa-icon icon="asterisk" [spin]="true"></fa-icon>
+                  </span>
+                </button>
+              </div>
             </form>
           </fieldset>
         </div>
@@ -42,5 +50,3 @@
     </mat-toolbar>
   </div>
 </div>
-
-
