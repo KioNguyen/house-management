@@ -6,7 +6,17 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
     steps:
+        
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+
+      - run: npm install
+
+      - run: npm run build
+
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -22,7 +32,7 @@ jobs:
 
       - name:  Log source
         run: ls
-        
+
       - name:  Install Angular
         run: npm install -g @angular/cli 
 
